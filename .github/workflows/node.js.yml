@@ -21,3 +21,10 @@ jobs:
     - run: npm run build
     - run: pwd
     - run: ls -ltr
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: drop
+        # A file, directory or wildcard pattern that describes what to upload
+        path: dist/
+          
