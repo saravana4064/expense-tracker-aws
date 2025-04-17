@@ -18,12 +18,12 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build
-    - run: pwd
-    - run: ls -ltr
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v4.6.2
+    - name: Deploy to my EC2 instance
+      uses: easingthemes/ssh-deploy@v2.1.5
       with:
-        name: drop
-        # A file, directory or wildcard pattern that describes what to upload
-        path: dist/
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY}}
+        SOURCE: "dist/expense-tracker/"
+        REMOTE_HOST: "ec2-3-147-13-124.us-east-2.compute.amazonaws.com"
+        REMOTE_USER: "ubuntu"
+        TARGET: "/var/www/html/aws-demo/expense-tracker"
           
